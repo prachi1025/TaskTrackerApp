@@ -4,6 +4,7 @@ import { useThemeStore } from './Store/useThemeStore.js'
 import Header from './components/Header.jsx'
 import HomePage from './pages/HomePage.jsx'
 import SettingsPage from './pages/SettingsPage.jsx'
+import { Toaster } from 'react-hot-toast'
 
 const App = () => {
   const { theme } = useThemeStore();
@@ -17,6 +18,8 @@ const App = () => {
             <Route path='/settings' element={<SettingsPage />} />
           </Routes>
         </main>
+
+        <Toaster />
       </div>
     
   )
