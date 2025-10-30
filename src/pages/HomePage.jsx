@@ -7,12 +7,13 @@
 import { useState } from "react";
 import { Plus } from "lucide-react";
 import TaskForm from "../components/TaskForm";
+import TaskList from "../components/TaskList";
 import Header from "../components/Header";
 import { useTaskStore } from "../store/useTaskStore.js";
 
 const HomePage = () => {
   // Accessing task store
-  const {  addTask } = useTaskStore();
+  const { tasks, addTask, deleteTask, toggleTask } = useTaskStore();
   // State to control modal visibility
   const [showModal, setShowModal] = useState(false);
 
@@ -36,6 +37,12 @@ const HomePage = () => {
         >
           <Plus className="w-5 h-5" /> Add Task
         </button>
+
+        {/* Task List */}
+        <TaskList
+          tasks={tasks}                  onDelete={deleteTask}
+          onToggle={toggleTask}
+        />
 
       </main>
 
