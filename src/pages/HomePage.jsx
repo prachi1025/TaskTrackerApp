@@ -13,7 +13,7 @@ import { useTaskStore } from "../store/useTaskStore.js";
 
 const HomePage = () => {
   // Accessing task store
-  const { tasks, addTask, deleteTask, toggleTask } = useTaskStore();
+  const { tasks, addTask, deleteTask, toggleTaskCompletion } = useTaskStore();
   // State to control modal visibility
   const [showModal, setShowModal] = useState(false);
 
@@ -41,7 +41,7 @@ const HomePage = () => {
         {/* Task List */}
         <TaskList
           tasks={tasks}                  onDelete={deleteTask}
-          onToggle={toggleTask}
+          onToggle={toggleTaskCompletion}
         />
 
       </main>

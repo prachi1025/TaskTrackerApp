@@ -5,20 +5,31 @@
  */
 
 import { useState } from "react";
+import toast from "react-hot-toast";
 
 const TaskForm = ({ onAddTask }) => {
   const [name, setName] = useState("");
   const [desc, setDesc] = useState("");
   const [priority, setPriority] = useState("Medium");
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!name.trim()) return alert("Task name is required!");
-    onAddTask({ name, desc, priority });
-    setName("");
-    setDesc("");
-    setPriority("Medium");
+  const validateForm = () => {
+    if (!name.trim()) {
+      toast.error("Task name is required!");
+      return false;
+    }
+    return true;
   };
+
+  const handleSubmit = (e) => {
+      e.preventDefault();
+      if (!validateForm()) return;
+
+      onAddTask({ name, desc, priority });
+      setName("");
+      setDesc("");
+      setPriority("Medium");
+      toast.success("Task added successfully!");
+    };
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">

@@ -13,9 +13,9 @@ const TaskItem = ({ task, onDelete, onToggle }) => {
         task.completed ? "opacity-80 bg-primary" : "bg-base-100"
       }`}
     >
-      {/* top rtow: toggle and delete buttons*/}
+      {/* Top row*/}
       <div className="flex items-center justify-between mb-3">
-        {/* toggle button */}
+        {/* Toggle Button */}
         <button
           onClick={() => onToggle(task.id)}
           className="transition-transform hover:scale-110"
@@ -28,7 +28,7 @@ const TaskItem = ({ task, onDelete, onToggle }) => {
           )}
         </button>
 
-        {/* delete button */}
+        {/* Delete button */}
         <button
           onClick={() => onDelete(task.id)}
           className="text-red-500 hover:text-red-600 transition-colors"
@@ -38,7 +38,7 @@ const TaskItem = ({ task, onDelete, onToggle }) => {
         </button>
       </div>
 
-      {/* task content */}
+      {/* Task content */}
       <div>
         <h3
           className={`text-lg font-semibold break-words ${
