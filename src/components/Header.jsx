@@ -4,10 +4,13 @@
  * @component
  */
 
-import { ListTodo, Settings } from "lucide-react";
-import { Link } from "react-router-dom";
+import { ListTodo, Settings, ArrowLeft } from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
 
 const Header = () => {
+    const location = useLocation();
+    const isSettingsPage = location.pathname === '/settings';
+
   return (
     <div className="navbar bg-base-100 shadow-md px-4 sm:px-6 fixed top-0 left-0 right-0 z-50">
         {/* Left section */}
@@ -22,13 +25,16 @@ const Header = () => {
         </div>
 
         {/* Right section */}
-        <div className="flex-none ml-1">
-            <Link 
-                to="/settings"
-                className="btn btn-ghost"
-            >
-                <Settings className="w-5 h-5" />
-            </Link>
+        <div className="flex-none ml-2">
+            {isSettingsPage ? (
+                <Link to="/" className="btn btn-ghost" data-tip="Back to Home">
+                    <ArrowLeft className="w-5 h-5" />
+                </Link>
+                ) : (
+                <Link to="/settings" className="btn btn-ghost" data-tip="Settings">
+                    <Settings className="w-5 h-5" />
+                </Link>
+            )}
         </div>
     </div>
   )

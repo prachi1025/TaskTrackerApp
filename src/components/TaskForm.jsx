@@ -12,6 +12,14 @@ const TaskForm = ({ onAddTask }) => {
   const [desc, setDesc] = useState("");
   const [priority, setPriority] = useState("Medium");
 
+  // Character limits
+  const NAME_LIMIT = 50
+  const DESC_LIMIT = 250
+
+  /**
+   * form validation function to ensure required fields are filled
+   * @returns boolean - whether the form is valid or not
+   */
   const validateForm = () => {
     if (!name.trim()) {
       toast.error("Task name is required!");
@@ -20,6 +28,38 @@ const TaskForm = ({ onAddTask }) => {
     return true;
   };
 
+  /**
+   * Handles changes to the task name input field
+   * ensures character limit is not exceeded
+   * @param {Object} e - the event object from the infut field
+   */
+  const handleNameChange = (e) => {
+    const value = e.target.value;
+    if (value.length <= NAME_LIMIT) {
+      setName(value);
+    } else {
+      toast.error(`Task name cannot exceed ${NAME_LIMIT} characters!`);
+    }
+  };
+
+  /**
+   * Handles changes to the task description input field
+   * ensures character limit is not exceeded
+   * @param {Object} e - the event object from the textarea field
+   */
+  const handleDescChange = (e) => {
+    const value = e.target.value; 
+    if (value.length <= DESC_LIMIT) {
+      setDesc(value);
+    } else {
+      toast.error(`Description cannot exceed ${DESC_LIMIT} characters!`);
+    }
+  };
+
+  /**
+   * Handles form submission
+   * @param {Object} e - the event object from the form
+   */
   const handleSubmit = (e) => {
       e.preventDefault();
       if (!validateForm()) return;
@@ -38,13 +78,18 @@ const TaskForm = ({ onAddTask }) => {
         <label className="label">
           <span className="label-text font-semibold">Task Name</span>
         </label>
-        <input
-          type="text"
-          placeholder="Enter task name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-gray-400 transition-all duration-200"
-        />
+        <div className="relative">
+          <input
+            type="text"
+            placeholder="Enter task name"
+            value={name}
+            onChange={handleNameChange}
+            className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-gray-400 transition-all duration-200"
+          />
+          <span className="absolute right-3 bottom-2 text-xs text-gray-500">
+            {name.length}/{NAME_LIMIT}
+          </span>
+        </div>
       </div>
 
       {/* Description */}
@@ -52,13 +97,18 @@ const TaskForm = ({ onAddTask }) => {
         <label className="label">
           <span className="label-text font-semibold">Description</span>
         </label>
-        <textarea
-          placeholder="Enter task description"
-          value={desc}
-          onChange={(e) => setDesc(e.target.value)}
-          rows={3}
-          className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-gray-400 transition-all duration-200 resize-none"
-        />
+        <div className="relative">
+          <textarea
+            placeholder="Enter task description"
+            value={desc}
+            onChange={handleDescChange}
+            rows={3}
+            className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-gray-400 transition-all duration-200 resize-none"
+          />
+          <span className="absolute right-3 bottom-2 text-xs text-gray-500">
+            {desc.length}/{DESC_LIMIT}
+          </span>
+        </div>
       </div>
 
       {/* Priority Selector */}

@@ -1,6 +1,6 @@
 import React from 'react'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import { useThemeStore } from './Store/useThemeStore.js'
+import { Routes, Route } from 'react-router-dom'
+import { useThemeStore } from './store/useThemeStore.js'
 import Header from './components/Header.jsx'
 import HomePage from './pages/HomePage.jsx'
 import SettingsPage from './pages/SettingsPage.jsx'
