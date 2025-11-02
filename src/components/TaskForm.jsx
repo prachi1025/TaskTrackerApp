@@ -5,16 +5,13 @@
  */
 
 import { useState } from "react";
-import toast from "react-hot-toast";
+import toast from "react-hot-toast";  
+import { NAME_LIMIT, DESC_LIMIT } from "../constants/character-limits.js";
 
 const TaskForm = ({ onAddTask }) => {
   const [name, setName] = useState("");
   const [desc, setDesc] = useState("");
   const [priority, setPriority] = useState("Medium");
-
-  // Character limits
-  const NAME_LIMIT = 50
-  const DESC_LIMIT = 250
 
   /**
    * form validation function to ensure required fields are filled
