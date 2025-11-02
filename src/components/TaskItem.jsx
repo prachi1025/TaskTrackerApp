@@ -77,8 +77,9 @@ const TaskItem = ({ task, onDelete, onToggle, onEdit }) => {
         {/* Created / Updated info */}
         <p className="text-xs text-gray-500 mt-2 italic">
           {task.updatedAt !== task.createdAt
-            ? `Updated: ${task.updatedAt}`
-            : `Created: ${task.createdAt}`}
+            ? task.updatedAt
+            : task.createdAt
+        }
         </p>
       </div>
     </div>
