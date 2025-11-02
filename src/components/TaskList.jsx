@@ -61,7 +61,7 @@ const TaskList = ({ tasks, onDelete, onToggle, onEdit }) => {
           {tasks.length > 0 && (
             <button
               onClick={handleClearTasks}
-              className="btn btn-sm btn-error  text-white hover: brightness-110" 
+              className="btn btn-sm badge-error" 
             >
               Clear All
             </button>
