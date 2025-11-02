@@ -2,8 +2,8 @@
 
 A clean and interactive **Task Management App** built with **React**, **Zustand**, **Tailwind CSS**, and **DaisyUI**.  
 Easily **add, edit, delete, complete, and prioritize tasks** — all saved in **localStorage** for persistence.  
-Fully themeable with DaisyUI’s light/dark modes and custom DaisyUI themes.
-[Live Deployment](https://task-tracker-app-peach.vercel.app/)
+Fully themeable with DaisyUI’s light/dark modes and custom DaisyUI themes.  
+[Live Deployment](https://task-tracker-app-peach.vercel.app/) of this Task Tracker App
 
 ---
 
