@@ -8,7 +8,7 @@ import { useState } from "react";
 import Masonry from "react-masonry-css";
 import TaskItem from "./TaskItem";
 
-const TaskList = ({ tasks, onDelete, onToggle }) => {
+const TaskList = ({ tasks, onDelete, onToggle, onEdit }) => {
   const [filter, setFilter] = useState("All");
 
   const filteredTasks = tasks.filter((task) => {
@@ -63,6 +63,7 @@ const TaskList = ({ tasks, onDelete, onToggle }) => {
               task={task}
               onDelete={onDelete}
               onToggle={onToggle}
+              onEdit={onEdit}
             />
           ))}
         </Masonry>

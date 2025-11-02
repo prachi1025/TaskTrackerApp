@@ -1,22 +1,27 @@
 /**
  * TaskForm Component
- * Handles creating a new task (name, description, priority)
+ * Handles creating and editing tasks.
  * @component
  */
 
-import { useState } from "react";
-import toast from "react-hot-toast";  
+import { useState, useEffect } from "react";
+import toast from "react-hot-toast";
 import { NAME_LIMIT, DESC_LIMIT } from "../constants/character-limits.js";
 
-const TaskForm = ({ onAddTask }) => {
+const TaskForm = ({ onAddTask, existingTask }) => {
   const [name, setName] = useState("");
   const [desc, setDesc] = useState("");
   const [priority, setPriority] = useState("Medium");
 
-  /**
-   * form validation function to ensure required fields are filled
-   * @returns boolean - whether the form is valid or not
-   */
+  // Prefill when editing
+  useEffect(() => {
+    if (existingTask) {
+      setName(existingTask.name);
+      setDesc(existingTask.desc);
+      setPriority(existingTask.priority);
+    }
+  }, [existingTask]);
+
   const validateForm = () => {
     if (!name.trim()) {
       toast.error("Task name is required!");
@@ -25,48 +30,21 @@ const TaskForm = ({ onAddTask }) => {
     return true;
   };
 
-  /**
-   * Handles changes to the task name input field
-   * ensures character limit is not exceeded
-   * @param {Object} e - the event object from the infut field
-   */
-  const handleNameChange = (e) => {
-    const value = e.target.value;
-    if (value.length <= NAME_LIMIT) {
-      setName(value);
-    } else {
-      toast.error(`Task name cannot exceed ${NAME_LIMIT} characters!`);
-    }
-  };
-
-  /**
-   * Handles changes to the task description input field
-   * ensures character limit is not exceeded
-   * @param {Object} e - the event object from the textarea field
-   */
-  const handleDescChange = (e) => {
-    const value = e.target.value; 
-    if (value.length <= DESC_LIMIT) {
-      setDesc(value);
-    } else {
-      toast.error(`Description cannot exceed ${DESC_LIMIT} characters!`);
-    }
-  };
-
-  /**
-   * Handles form submission
-   * @param {Object} e - the event object from the form
-   */
   const handleSubmit = (e) => {
-      e.preventDefault();
-      if (!validateForm()) return;
+    e.preventDefault();
+    if (!validateForm()) return;
 
-      onAddTask({ name, desc, priority });
+    onAddTask({ name, desc, priority });
+
+    if (!existingTask) {
+      toast.success("Task added successfully!");
       setName("");
       setDesc("");
       setPriority("Medium");
-      toast.success("Task added successfully!");
-    };
+    } else {
+      toast.success("Task updated successfully!");
+    }
+  };
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
@@ -80,7 +58,7 @@ const TaskForm = ({ onAddTask }) => {
             type="text"
             placeholder="Enter task name"
             value={name}
-            onChange={handleNameChange}
+            onChange={(e) => setName(e.target.value)}
             className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-gray-400 transition-all duration-200"
           />
           <span className="absolute right-3 bottom-2 text-xs text-gray-500">
@@ -98,7 +76,7 @@ const TaskForm = ({ onAddTask }) => {
           <textarea
             placeholder="Enter task description"
             value={desc}
-            onChange={handleDescChange}
+            onChange={(e) => setDesc(e.target.value)}
             rows={3}
             className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-gray-400 transition-all duration-200 resize-none"
           />
@@ -138,7 +116,7 @@ const TaskForm = ({ onAddTask }) => {
 
       {/* Submit Button */}
       <button type="submit" className="btn btn-primary w-full mt-4">
-        Add Task
+        {existingTask ? "Update Task" : "Add Task"}
       </button>
     </form>
   );
