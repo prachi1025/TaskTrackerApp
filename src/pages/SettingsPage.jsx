@@ -5,7 +5,7 @@
  */
 
 import { THEMES } from "../constants";
-import { useThemeStore } from "../Store/useThemeStore.js"
+import { useThemeStore } from "../store/useThemeStore.js"
 import { CheckCircle, Circle } from "lucide-react";
 
 const PREVIEW_TASKS = [
