@@ -7,9 +7,20 @@
 import { useState } from "react";
 import Masonry from "react-masonry-css";
 import TaskItem from "./TaskItem";
+import { useTaskStore } from "../store/useTaskStore.js";
+import toast from "react-hot-toast";
 
 const TaskList = ({ tasks, onDelete, onToggle, onEdit }) => {
   const [filter, setFilter] = useState("All");
+  const { clearTasks } = useTaskStore()
+
+  const handleClearTasks = () => {
+    if (tasks.length === 0) return toast.error("No tasks to clear!")
+    if (confirm("Are you sure you want to clear all tasks?")) {
+      clearTasks();
+      toast.success("All tasks cleared!")
+    }
+  };
 
   const filteredTasks = tasks.filter((task) => {
     if (filter === "Completed") return task.completed;
@@ -45,6 +56,16 @@ const TaskList = ({ tasks, onDelete, onToggle, onEdit }) => {
               {type}
             </button>
           ))}
+
+          {/* Clear All Tasks Button */}
+          {tasks.length > 0 && (
+            <button
+              onClick={handleClearTasks}
+              className="btn btn-sm btn-error  text-white hover: brightness-110" 
+            >
+              Clear All
+            </button>
+          )}
         </div>
       </div>
 
@@ -72,4 +93,4 @@ const TaskList = ({ tasks, onDelete, onToggle, onEdit }) => {
   );
 };
 
-export default TaskList;
+export default TaskList
