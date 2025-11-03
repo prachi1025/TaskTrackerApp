@@ -119,8 +119,8 @@ const TaskList = ({ tasks, onDelete, onToggle, onEdit }) => {
       ) : (
         <Masonry
           breakpointCols={breakpointColumnsObj}
-          className="flex w-auto -ml-4"
-          columnClassName="masonry-column pl-4 flex flex-col gap-4"
+          className="flex w-auto -mx-8"
+          columnClassName="masonry-column pl-2 flex flex-col gap-2"
         >
           {filteredTasks.map((task) => (
             <TaskItem
