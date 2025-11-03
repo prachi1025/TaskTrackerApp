@@ -1,7 +1,7 @@
 # Task Manager App
 
 A clean and interactive **Task Management App** built with **React**, **Zustand**, **Tailwind CSS**, and **DaisyUI**.  
-Easily **add, edit, delete, complete, and prioritize tasks** — all saved in **localStorage** for persistence.  
+Easily **add, edit, delete, complete, search and prioritize tasks** — all saved in **localStorage** for persistence.  
 Fully themeable with DaisyUI’s light/dark modes and custom DaisyUI themes.  
 [Live Deployment](https://task-tracker-app-peach.vercel.app/) of this Task Tracker App
 
@@ -9,17 +9,18 @@ Fully themeable with DaisyUI’s light/dark modes and custom DaisyUI themes.
 
 ## Features
 
- **Add Tasks** – Create new tasks with title, description, and priority.  
- **Edit Tasks** – Update existing tasks using a floating edit modal.  
- **Toggle Completion** – Mark tasks as completed or revert to pending.  
- **Delete Tasks** – Instantly remove unwanted tasks.    
- **Priority Levels** – Choose between High, Medium, or Low.  
- **Smart Timestamps** – Shows *Created at* or *Updated at* dynamically.  
- **Persistent Storage** – All data is safely stored in **localStorage**.  
- **Zustand Store** – Minimal and efficient state management.  
- **DaisyUI Components** – Pre-styled elements with built-in themes.  
- **Theme Switcher** – Supports light, dark, and custom DaisyUI themes.  
- **Toast Notifications** – Real-time feedback using `react-hot-toast`.
+ **Add Tasks** - Create new tasks with title, description, and priority.  
+ **Edit Tasks** - Update existing tasks using a floating edit modal.  
+ **Toggle Completion** - Mark tasks as completed or revert to pending.  
+ **Delete Tasks** - Instantly remove unwanted tasks.  
+ **Search Tasks** - Search through tasks.  
+ **Priority Levels** - Choose between High, Medium, or Low.  
+ **Smart Timestamps** - Shows *Created at* or *Updated at* dynamically.  
+ **Persistent Storage** - All data is safely stored in **localStorage**.  
+ **Zustand Store** - Minimal and efficient state management.  
+ **DaisyUI Components** - Pre-styled elements with built-in themes.  
+ **Theme Switcher** - Supports light, dark, and custom DaisyUI themes.  
+ **Toast Notifications** - Real-time feedback using `react-hot-toast`.
 
 ---
 
@@ -52,7 +53,8 @@ TaskTrackerApp/
 │ │ ├── Header.jsx  
 │ │ ├── TaskForm.jsx  
 │ │ ├── TaskItem.jsx  
-│ │ └── TaskList.jsx  
+| | ├── TaskList.jsx  
+│ │ └── TaskSearch.jsx  
 │ │  
 │ ├── constants/  
 │ │ ├── character-limits.js  
@@ -101,6 +103,7 @@ TaskTrackerApp/
 | **TaskForm.jsx** | Floating form for adding or editing tasks. |
 | **TaskItem.jsx** | Represents a single task with toggle, delete, and edit options |
 | **TaskList.jsx** | Displays all tasks from the store. |
+| **TaskSearch.jsx** | Search bar for fitering through search results. |
 | **HomePage.jsx** | Main task management view. |
 | **SettingsPage.jsx** | Theme management |
 | **useTaskStore.js** | Zustand store for task data |
