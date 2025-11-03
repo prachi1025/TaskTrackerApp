@@ -6,10 +6,8 @@
 
 import { create } from "zustand";
 import { getFormattedDateTime } from "../utils/date-time.js";
-import {
-  loadTasksFromLocalStorage,
-  saveTasksToLocalStorage,
-} from "../utils/local-storage.js";
+import { loadTasksFromLocalStorage, saveTasksToLocalStorage } from "../utils/local-storage.js";
+import toast from "react-hot-toast";
 
 /**
  * Zustand store for managing tasks.
@@ -66,6 +64,7 @@ export const useTaskStore = create((set, get) => ({
     const updatedTasks = get().tasks.filter((task) => task.id !== id);
     saveTasksToLocalStorage(updatedTasks);
     set({ tasks: updatedTasks });
+    toast.success("Task deleted!");
   },
 
   /**
