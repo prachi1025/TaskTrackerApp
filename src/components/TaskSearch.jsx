@@ -21,7 +21,7 @@ const TaskSearch = ({ onSearch }) => {
       placeholder="Search tasks..."
       value={query}
       onChange={handleChange}
-      className="input input-bordered input-sm w-full sm:w-64 rounded-l shadow-sm focus:ring-2 focus:ring-primary outline-none"
+      className="input input-bordered input-sm w-full sm:w-64 rounded-xl shadow-sm focus:ring-2 focus:ring-primary outline-none"
     />
   );
 };
